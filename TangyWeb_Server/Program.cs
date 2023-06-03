@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using TangyWeb_Server.Data;
 
 namespace TangyWeb_Server
@@ -24,6 +22,10 @@ namespace TangyWeb_Server
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            else
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseHttpsRedirection();
 
@@ -32,7 +34,7 @@ namespace TangyWeb_Server
             app.UseRouting();
 
             app.MapBlazorHub();
-            app.MapFallbackToPage("/_Host");
+            app.MapFallbackToPage("/_Host");  // if cannot find the target page, go here.
 
             app.Run();
         }
