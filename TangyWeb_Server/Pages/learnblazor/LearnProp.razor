@@ -10,10 +10,11 @@
  Price : @Product.Price
 <br />
 
-This product is:@GetValue()
+@*This product is:@((Product.IsActive==true)?"Active":"Noactive")*@
+This product is:@(Product.IsActive ? "Active" : "Noactive")
 <br />
 
-<input type="checkbox" checked @bind-value="@Product.IsActive" @bind-value:event="oninput" />
+<input type="checkbox" @bind-value="@Product.IsActive" checked="@(Product.IsActive?"checked":null)" />
 <br />
 Price:
 <input type="number" @bind-value="@Product.Price" @bind-value:event="oninput" />
@@ -28,9 +29,9 @@ Price:
             IsActive = true,
             Price = 10.99
         };
-    private string GetValue()
-    {
-        if (Product.IsActive) return "Active";
-        return "NoActive";
-    }
+    //private string GetValue()
+    //{
+    //    if (Product.IsActive) return "Active";
+    //    return "NoActive";
+    //}
 }
