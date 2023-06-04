@@ -37,6 +37,34 @@
 </div>
 
 
+    <h1>Product Table</h1>
+    @foreach (var item in Products)
+    {
+        <div class="row mt-2">
+                <div class="col-6">
+                    <input type="text" @bind-value="@item.Name" @bind-value:event="oninput" /> <br />
+                </div>
+                <div class="col-6">
+                    <input type="text" @bind-value="@item.Price" @bind-value:event="oninput" /> <br />
+                </div>
+        </div>
+        
+    }
+
+
+<div class="row">
+
+    <h1>Product Summary</h1>
+    @foreach (var item in Products)
+    {
+        <div>
+            @(item.Name + "[" + item.Price + "] is " + (item.IsActive ? "Active" : "inActive"));
+            
+        </div>
+    }
+</div>
+
+
 @code {
     private string selectedProp = "";
 
@@ -64,6 +92,7 @@
                 Id = 1,
                 Name = "Midnight Blaze",
                 IsActive = false,
+                Price = 10.99,
                 ProductProperties = new()
                 {
                 new Demo_ProductProp { Id = 1, Key = "Flavor", Value = "Rose"},
@@ -77,6 +106,7 @@
                 Id = 2,
                 Name = "Blossom Lily",
                 IsActive = true,
+                Price = 13.99,
                 ProductProperties = new()
             {
                 new Demo_ProductProp { Id = 1, Key = "Flavor", Value = "Lily" },
