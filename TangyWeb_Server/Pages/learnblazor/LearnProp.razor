@@ -65,6 +65,39 @@
 </div>
 
 
+
+@*Tutor's code*@
+
+<div class="col-12 pt-4">
+    <h2 class="text-success">Product Table</h2>
+    <table class="table table-striped">
+        <tbody>
+            @foreach (var prod in Products)
+            {
+                <tr>
+                    <td>
+                        <input type="text" @bind-value="prod.Name" @bind-value:event="oninput" />
+                    </td>
+                    <td>
+                        <input type="text" @bind-value="prod.Price" @bind-value:event="oninput" />
+                    </td>
+                    <td>
+                        <input type="checkbox" @bind-value="prod.IsActive" checked="@(prod.IsActive?"checked":null)" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br /><br />
+    <h2>Product Summary</h2>
+    @foreach (var prod in Products)
+    {
+        <p>@prod.Name [@prod.Price] is @(prod.IsActive ? "Active" : "InActive")</p>
+    }
+</div>
+
+
+
 @code {
     private string selectedProp = "";
 
