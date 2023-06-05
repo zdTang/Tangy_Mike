@@ -1,4 +1,5 @@
-﻿  <div class="bg-light border m-1 col-5">
+﻿<div class="bg-light border m-1 col-5" @onclick="@(e=>
+    ChoseProduct(prod.Name))">
 <h4 class="text-secondary">Product - @prod.Id</h4>
     <input type="checkbox" @onchange="FavoriteUpdated" /> Add to Favorite <br /><br />
 
@@ -27,7 +28,11 @@
 
     // Use this to receive a function as this Name and return value passed from Dad
     [Parameter]
-    public EventCallback<bool> OnFavoriteUpdated { get; set; }  
+    public EventCallback<bool> OnFavoriteUpdated { get; set; }
+    
+    [Parameter]
+    public EventCallback<string> OnChoseProduct { get; set; }
+    
 
     // In this EventHandler, we use the function Parent passed to deal with issue
     // By this way,we can pass value from children to Parent
@@ -36,4 +41,14 @@
         // Here, we use the function Parent component passed to deal with Check event
         await OnFavoriteUpdated.InvokeAsync((bool)e.Value);
     }
+
+    private async Task ChoseProduct(string chosenName)
+    {
+        // Here, we use the function Parent component passed to deal with Check event
+
+
+        await OnChoseProduct.InvokeAsync(chosenName);
+    }
 }
+
+
