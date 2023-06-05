@@ -30,24 +30,21 @@
 
 
 @*Tutor's code*@
-
+<p>Favorites Total : @SelectedFavouriteCount</p>
 <div class="border p-2 mt-2" style="background-color:azure">
     <div class="row">
         @foreach (var prod in Products)
         {
-            <div class="bg-light border m-1 col-5">
                 @*here, "@prod"and @prod all work fine*@
-               <_ProductInformation prod="@prod"></_ProductInformation>
+            <_IndividualProduct prod="prod" OnFavoriteUpdated="FavouriteCountUpdate"></_IndividualProduct>
                 <br />
-                <_EditDeleteButton IsActive="@prod.IsActive">
-                </_EditDeleteButton>
-            </div>
         }
     </div>
 </div>
 
 @code {
     List<Demo_Product> Products = new();
+    private int SelectedFavouriteCount { get; set; } = 0;
 
     protected override void OnInitialized()
     {
@@ -105,5 +102,17 @@
                 new Demo_ProductProp {Id = 3,Key = "Color",Value = "White"}
             }
             });
+    }
+
+    protected void FavouriteCountUpdate(bool isSelected)
+    {
+        if (isSelected)
+        {
+            SelectedFavouriteCount++;
+        }
+        else
+        {
+            SelectedFavouriteCount--;
+        }
     }
 }

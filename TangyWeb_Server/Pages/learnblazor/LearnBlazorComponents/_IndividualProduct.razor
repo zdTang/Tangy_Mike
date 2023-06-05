@@ -1,0 +1,39 @@
+﻿  <div class="bg-light border m-1 col-5">
+<h4 class="text-secondary">Product - @prod.Id</h4>
+    <input type="checkbox" @onchange="FavoriteUpdated" /> Add to Favorite <br /><br />
+
+<br />
+                Name - @prod.Name
+<br />
+                Show Properties :
+<input type="checkbox" @bind-value="prod.IsActive" checked="@(prod.IsActive?"checked":null)" />
+
+@if (prod.IsActive)
+{
+    @foreach (var prodProp in prod.ProductProperties)
+    {
+        <p>@prodProp.Key - @prodProp.Value</p>
+    }
+}
+<br/>
+<_EditDeleteButton IsActive="@prod.IsActive">
+</_EditDeleteButton>
+
+</div>
+
+@code {
+    [Parameter]
+    public Demo_Product prod { get; set; }
+
+    // Use this to receive a function as this Name and return value passed from Dad
+    [Parameter]
+    public EventCallback<bool> OnFavoriteUpdated { get; set; }  
+
+    // In this EventHandler, we use the function Parent passed to deal with issue
+    // By this way,we can pass value from children to Parent
+    private async Task FavoriteUpdated(ChangeEventArgs e)
+    {
+        // Here, we use the function Parent component passed to deal with Check event
+        await OnFavoriteUpdated.InvokeAsync((bool)e.Value);
+    }
+}
