@@ -19,8 +19,10 @@
 <_AnotherChildComponent placeholder="Placeholder from Parent"></_AnotherChildComponent>
 
 
-<CascadingValue Value="@MessageForGrandChild">
-    <_ChildComponent OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component"></_ChildComponent>
+<CascadingValue Value="@MessageForGrandChild" Name="message">
+    <CascadingValue Value="@LuckyNumber" Name="luckyNumber">
+        <_ChildComponent OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component"></_ChildComponent>
+    </CascadingValue>
 </CascadingValue>
 
 
@@ -37,7 +39,7 @@
     //    { "maxlength", 5}
     //  };
     public string MessageForGrandChild = "This message is from your grand parent (ParentComponent)";
-
+    public string LuckyNumber = "7";
     private void ShowMessage()
     {
         messageText = "Tangy button clicked from Child Component";
