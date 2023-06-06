@@ -14,18 +14,20 @@
 @*Placeholder="Placeholder from Parent" MaxLength="5" *@
 @*<_AnotherChildComponent></_AnotherChildComponent>*@
 
-<_AnotherChildComponent InputAttributes="InputAttributesFromParent"></_AnotherChildComponent>
+@*<_AnotherChildComponent InputAttributes="InputAttributesFromParent"></_AnotherChildComponent>*@
+<_AnotherChildComponent placeholder="Placeholder from Parent"></_AnotherChildComponent>
+
 @*<_ChildComponent Title="This is second child component">
 </_ChildComponent>*@
 
 @code {
     public string messageText = "";
-    public Dictionary<string, object> InputAttributesFromParent { get; set; } = new Dictionary<string, object>()
-    {
-        { "required" , "required"},
-        { "placeholder", "Enter Name From Parent"},
-        { "maxlength", 5}
-      };
+    //public Dictionary<string, object> InputAttributesFromParent { get; set; } = new Dictionary<string, object>()
+    //{
+    //    { "required" , "required"},
+    //    { "placeholder", "Enter Name From Parent"},
+    //    { "maxlength", 5}
+    //  };
 
     private void ShowMessage()
     {
