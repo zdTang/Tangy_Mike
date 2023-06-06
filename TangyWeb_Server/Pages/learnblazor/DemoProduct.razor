@@ -15,14 +15,14 @@
                 {
                     <div>@item.Key-@item.Value</div>
                 }
-                
+
             }
-           
 
 
 
-           <input type="button" class="btn btn-danger" style="width:100px;" value="Delete" />
-           <input type="button" class="btn btn-success" style="width:100px;" value="Edit" />
+
+            <input type="button" class="btn btn-danger" style="width:100px;" value="Delete" />
+            <input type="button" class="btn btn-success" style="width:100px;" value="Edit" />
         }
     </div>
 </div>
@@ -36,12 +36,15 @@
     <div class="row">
         @foreach (var prod in Products)
         {
-                @*here, "@prod"and @prod all work fine*@
-            <_IndividualProduct prod="prod" 
-                OnFavoriteUpdated="FavouriteCountUpdate"
-                OnChoseProduct="ChooseProductUpdate"
-            ></_IndividualProduct>
-                <br />
+            @*here, "@prod"and @prod all work fine*@
+            <_IndividualProduct prod="prod"
+                                OnFavoriteUpdated="FavouriteCountUpdate"
+                                OnChoseProduct="ChooseProductUpdate">
+                <RenderFragmentOne>#1</RenderFragmentOne>
+                <RenderFragmentTwo>#2</RenderFragmentTwo>
+
+            </_IndividualProduct>
+            <br />
         }
     </div>
 </div>
@@ -123,7 +126,7 @@
 
     protected void ChooseProductUpdate(string selectedProduct)
     {
-        //operate DOM to toggle 
+        //operate DOM to toggle
         SelectedProduct = selectedProduct;
     }
 }
