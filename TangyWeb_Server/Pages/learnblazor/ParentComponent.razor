@@ -10,6 +10,7 @@
 
 </_ChildComponent>
 
+
 <p><b>@messageText</b></p>
 @*Placeholder="Placeholder from Parent" MaxLength="5" *@
 @*<_AnotherChildComponent></_AnotherChildComponent>*@
@@ -17,8 +18,12 @@
 @*<_AnotherChildComponent InputAttributes="InputAttributesFromParent"></_AnotherChildComponent>*@
 <_AnotherChildComponent placeholder="Placeholder from Parent"></_AnotherChildComponent>
 
-<_ChildComponent OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component"
-                 MessageForGrandChild="This message is from your grand parent (ParentComponent)"></_ChildComponent>
+
+<CascadingValue Value="@MessageForGrandChild">
+    <_ChildComponent OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component"></_ChildComponent>
+</CascadingValue>
+
+
 
 @*<_ChildComponent Title="This is second child component">
 </_ChildComponent>*@
@@ -31,9 +36,11 @@
     //    { "placeholder", "Enter Name From Parent"},
     //    { "maxlength", 5}
     //  };
+    public string MessageForGrandChild = "This message is from your grand parent (ParentComponent)";
 
     private void ShowMessage()
     {
         messageText = "Tangy button clicked from Child Component";
+
     }
 }
