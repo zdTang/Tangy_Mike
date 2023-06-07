@@ -11,7 +11,8 @@
 
 @code {
     List<string> EventType = new List<string>();
-
+    [Parameter]
+    public int CountValue { get; set; }
 
 
     protected override void OnInitialized()
@@ -23,5 +24,15 @@
     {
         EventType.Add("Child - OnInitializedAsync is called");
         await Task.Delay(1000);
+    }
+
+    protected override void OnParametersSet()
+    {
+        EventType.Add("Child-OnParametersSet is called");
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        EventType.Add("Child-OnParametersSetAsync is called");
     }
 }
