@@ -3,8 +3,8 @@
 <h3>Parent Child Relation</h3>
 
 
-<_ChildComponent OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component">
-
+@*<_ChildComponent OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component">*@
+<_ChildComponent @ref="childComp" OnButtonClick="ShowMessage" Title="This title is passed as parameter from Parent Component">
     <ChildContent>Fragement From Parent! WooHOO!</ChildContent>
     <DangerChildContent>Danger Content from Render Fragement! WooHOO!</DangerChildContent>
 
@@ -26,11 +26,17 @@
 </CascadingValue>
 
 
+<div class="row">
+    <button class="btn btn-success" @onclick="()=>childComp.ToastrSuccess()">Show SweetAlert</button>
+</div>
+
 
 @*<_ChildComponent Title="This is second child component">
 </_ChildComponent>*@
 
 @code {
+
+    private _ChildComponent childComp;
     public string messageText = "";
     //public Dictionary<string, object> InputAttributesFromParent { get; set; } = new Dictionary<string, object>()
     //{
