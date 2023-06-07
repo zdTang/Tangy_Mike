@@ -2,12 +2,18 @@
 
 
 <hr />
-@foreach (var item in EventType)
+@*@foreach (var item in EventType)
 {
     @item
     <hr />
-}
+}*@
+@for (int i = 0; i < EventType.Count; i++)
+{
+    @i
 
+    @EventType[i]
+    <hr />
+}
 
 @code {
     List<string> EventType = new List<string>();
@@ -34,5 +40,23 @@
     protected override async Task OnParametersSetAsync()
     {
         EventType.Add("Child-OnParametersSetAsync is called");
+    }
+    protected override void OnAfterRender(bool firstRender)
+    {
+        //if (firstRender)
+        //{
+        //    CountValue = 111;
+        //}
+        //else
+        //{
+        //    CountValue = 999;
+
+        //}
+        EventType.Add("Child OnAfterRender is called");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        EventType.Add("Child - OnAfterRenderAsync is called");
     }
 }
