@@ -6,3 +6,10 @@
         toastr.error(message, "Operation Failed", { timeOut: 5000 });
     }
 }
+
+
+window.ShowSweetAlert = (message) => {
+
+    Swal.fire(message);
+
+}
