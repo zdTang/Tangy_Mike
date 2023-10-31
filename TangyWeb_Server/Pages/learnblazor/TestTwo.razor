@@ -6,30 +6,32 @@
 
 @using Microsoft.AspNetCore.Components.Forms
 
-<h1>Bind After Examples</h1>
+
+<h1>Bind Get Set Examples</h1>
 
 <h2>Elements</h2>
 
-<input type="text" @bind="text" @bind:after="() => {}" />
-
-<input type="text" @bind="text" @bind:after="After" />
-
-<input type="text" @bind="text" @bind:after="AfterAsync" />
+<input type="text" @bind:get="text" @bind:set="(value) => { text = text+value; }" />
+<input type="text" @bind:get="text" @bind:set="Set" />
+<input type="text" @bind:get="text" @bind:set="SetAsync" />
 
 <h2>Components</h2>
 
-<InputText @bind-Value="text" @bind-Value:after="() => { }" />
-
-<InputText @bind-Value="text" @bind-Value:after="After" />
-
-<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { text = text+value; }" />
+<InputText @bind-Value:get="text" @bind-Value:set="Set" />
+<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
     private string text = "";
 
-    private void After()
+    private void Set(string value)
     {
-        text = "100";
+        text = value+100;
     }
-    private Task AfterAsync() { return Task.CompletedTask; }
+
+    private Task SetAsync(string value)
+    {
+        text = value+1000;
+        return Task.CompletedTask;
+    }
 }
