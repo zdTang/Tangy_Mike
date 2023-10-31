@@ -2,23 +2,27 @@
 
 <h3>TestTwo</h3>
 
-@page "/bind"
+@page "/bind-theory"
 
 <p>
-    <input @bind="inputValue" @bind:event="oninput" />
+    <label>
+        Normal Blazor binding:
+        <input @bind="InputValue" />
+    </label>
 </p>
 
 <p>
-    <input @bind="InputValue" />
+    <label>
+        Demonstration of equivalent HTML binding:
+        <input value="@InputValue"
+        @onchange="@((ChangeEventArgs __e) => InputValue = __e?.Value?.ToString())" />
+    </label>
 </p>
 
-<ul>
-    <li><code>inputValue</code>: @inputValue</li>
-    <li><code>InputValue</code>: @InputValue</li>
-</ul>
+<p>
+    <code>InputValue</code>: @InputValue
+</p>
 
 @code {
-    private string? inputValue;
-
     private string? InputValue { get; set; }
 }
