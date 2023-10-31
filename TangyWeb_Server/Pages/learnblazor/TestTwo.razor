@@ -3,14 +3,33 @@
 <h3>TestTwo</h3>
 
 
-<p>
-    <input @bind="InputValue" @bind:event="oninput" />
-</p>
 
-<p>
-    <code>InputValue</code>: @InputValue
-</p>
+@using Microsoft.AspNetCore.Components.Forms
+
+<h1>Bind After Examples</h1>
+
+<h2>Elements</h2>
+
+<input type="text" @bind="text" @bind:after="() => {}" />
+
+<input type="text" @bind="text" @bind:after="After" />
+
+<input type="text" @bind="text" @bind:after="AfterAsync" />
+
+<h2>Components</h2>
+
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value="text" @bind-Value:after="After" />
+
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
 
 @code {
-    private string? InputValue { get; set; }
+    private string text = "";
+
+    private void After()
+    {
+        text = "100";
+    }
+    private Task AfterAsync() { return Task.CompletedTask; }
 }
