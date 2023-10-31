@@ -2,6 +2,23 @@
 
 <h3>TestTwo</h3>
 
-@code {
+@page "/bind"
 
+<p>
+    <input @bind="inputValue" @bind:event="oninput" />
+</p>
+
+<p>
+    <input @bind="InputValue" />
+</p>
+
+<ul>
+    <li><code>inputValue</code>: @inputValue</li>
+    <li><code>InputValue</code>: @InputValue</li>
+</ul>
+
+@code {
+    private string? inputValue;
+
+    private string? InputValue { get; set; }
 }
